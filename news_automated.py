@@ -52,15 +52,14 @@ def menu():
             category_num = int(input('Which would you like to choose?\nInput a number please: '))
             if category_num in categories:
                 category = categories[category_num]
-                return category_num, category
+                return category
             else:
                 print("Invalid option. Please enter a number between 1 and 7.")
         except ValueError:
             print("Please input a number.")
 def main():
     category = menu()
-    print(category)
-    print(category)
+
     get_articles_by_category(category)
     print(_get_articles('news'))
 
