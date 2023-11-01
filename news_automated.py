@@ -3,6 +3,9 @@ import requests
 API_KEY = 'f2488345765a4bccb86f03f6ca56c30a'
 
 URL = 'https://newsapi.org/v2/top-headlines?'
+#debugging
+#debugging
+#debugging
 
 
 def get_articles_by_category(category):
