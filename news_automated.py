@@ -5,12 +5,12 @@ API_KEY = 'f2488345765a4bccb86f03f6ca56c30a'
 URL = 'https://newsapi.org/v2/top-headlines?'
 
 
-# function get articles has country to be changed and variable in main changed
-def get_articles_by_category(category, country):
+def get_articles_by_category(category, country, number_of_pages):
     query_parameters = {
         "category": category,
         "sortBy": "top",
         "country": country,
+        "pageSize": number_of_pages,
         "apiKey": API_KEY
     }
     return _get_articles(query_parameters)
@@ -26,14 +26,15 @@ def _get_articles(params):
     for article in articles:
         results.append({'title': article['title'], 'url': article['url']})
 
-    for result in results:
-        print(result['title'])
-        print(result['url'])
+    articles_to_print = min(len(results), 5)
+
+    for i in range(articles_to_print):
+        print(results[i]['title'])
+        print(results[i]['url'])
         print('')
-        break
 
 
-def menu(apple):
+def menu_category():
     categories = {
         1: "Business",
         2: "Entertainment",
@@ -43,7 +44,6 @@ def menu(apple):
         6: "Sport",
         7: "Technology"
     }
-    apple = 200
     print("Hello Mark Bin, here are the options available for you to choose from:")
     for key, value in categories.items():
         print(f"{key}. {value}")
@@ -59,11 +59,42 @@ def menu(apple):
         except ValueError:
             print("Please input a number.")
 
+def menu_country():
+    categories = {
+        1: "gb",
+        2: "nl",
+        3: "us"
+    }
+    print("Hello Mark Bin, here are the options available for you to choose from:")
+    print("1. Great Britain\n2. The Netherlands\n3. The United States of America")
+
+    while True:
+        try:
+            category_num = int(input('Which would you like to choose?\nInput a number please: '))
+            if category_num in categories:
+                country = categories[category_num]
+                return country
+            else:
+                print("Invalid option. Please enter a number between 1 and 7.")
+        except ValueError:
+            print("Please input a number.")
+
+
+
+
+def menu_pages():
+    while True:
+        try:
+            pages = int(input('How many articles would you like to see?\nInput a number please: '))
+            return pages
+        except ValueError:
+            print("Please input a number.")
+
 def main():
-    category = menu([0])
-    country = menu([1])
-    get_articles_by_category(category, country)
-    print(_get_articles('news'))
+    category = menu_category()
+    country = menu_country()
+    number_of_pages = menu_pages()
+    print(get_articles_by_category(category, country, number_of_pages))
 
 
 if __name__ == '__main__':
