@@ -3,16 +3,14 @@ import requests
 API_KEY = 'f2488345765a4bccb86f03f6ca56c30a'
 
 URL = 'https://newsapi.org/v2/top-headlines?'
-#debugging
-#debugging
-#debugging
 
 
-def get_articles_by_category(category):
+# function get articles has country to be changed and variable in main changed
+def get_articles_by_category(category, country):
     query_parameters = {
         "category": category,
         "sortBy": "top",
-        "country": "nl",
+        "country": country,
         "apiKey": API_KEY
     }
     return _get_articles(query_parameters)
@@ -35,7 +33,7 @@ def _get_articles(params):
         break
 
 
-def menu():
+def menu(apple):
     categories = {
         1: "Business",
         2: "Entertainment",
@@ -45,7 +43,7 @@ def menu():
         6: "Sport",
         7: "Technology"
     }
-
+    apple = 200
     print("Hello Mark Bin, here are the options available for you to choose from:")
     for key, value in categories.items():
         print(f"{key}. {value}")
@@ -60,10 +58,11 @@ def menu():
                 print("Invalid option. Please enter a number between 1 and 7.")
         except ValueError:
             print("Please input a number.")
-def main():
-    category = menu()
 
-    get_articles_by_category(category)
+def main():
+    category = menu([0])
+    country = menu([1])
+    get_articles_by_category(category, country)
     print(_get_articles('news'))
 
 
