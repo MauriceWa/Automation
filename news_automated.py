@@ -1,5 +1,7 @@
 import requests
 
+# voer je eigen API in
+
 API_KEY = 'f2488345765a4bccb86f03f6ca56c30a'
 
 URL = 'https://newsapi.org/v2/top-headlines?'
@@ -59,6 +61,7 @@ def menu_category():
         except ValueError:
             print("Please input a number.")
 
+
 def menu_country():
     categories = {
         1: "gb",
@@ -80,8 +83,6 @@ def menu_country():
             print("Please input a number.")
 
 
-
-
 def menu_pages():
     while True:
         try:
@@ -89,6 +90,7 @@ def menu_pages():
             return pages
         except ValueError:
             print("Please input a number.")
+
 
 def main():
     category = menu_category()
