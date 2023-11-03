@@ -20,7 +20,7 @@ def get_articles_by_category(category, country, number_of_pages):
 
 def _get_articles(params):
     response = requests.get(URL, params=params)
-
+    print(response)
     articles = response.json().get('articles', [])
 
     results = []
