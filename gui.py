@@ -31,3 +31,4 @@ checkbox = customtkinter.CTkCheckBox(master=frame, text="Remember me")
 checkbox.pack(pady=12, padx=10)
 
 root.mainloop()
+#debug
