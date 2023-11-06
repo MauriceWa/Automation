@@ -1,34 +1,65 @@
-import customtkinter
-import packaging
-customtkinter.set_appearance_mode("dark")
-
-customtkinter.set_default_color_theme("dark-blue")
-
-root = customtkinter.CTk()
-root.geometry("500x300")
+import customtkinter as ctk
 
 
-def login():
-    print("Test")
+def save_info_and_switch_screen(screen_name, info_to_save):
+    # Save the information here
+    saved_info[screen_name] = info_to_save
+
+    # Switch to the selected screen
+    show_screen(screen_name)
+
+    # Add three buttons to screen2 based on the selected category
+    add_buttons_to_screen2(info_to_save)
 
 
-frame = customtkinter.CTkFrame(master=root)
-frame.pack(pady=20, padx=60, fill="both", expand=True)
 
-label = customtkinter.CTkLabel(master=frame, text="Login System", font=("Roboto", 24))
-label.pack(pady=12, padx=10)
 
-entry1 = customtkinter.CTkEntry(master=frame, placeholder_text="Username")
-entry1.pack(pady=12, padx=10)
+def show_screen(screen_name):
+    # Hide all screens
+    for screen in screens.values():
+        screen.pack_forget()
 
-entry2 = customtkinter.CTkEntry(master=frame, placeholder_text="Password", show="*")
-entry2.pack(pady=12, padx=10)
+    # Show the selected screen
+    screens[screen_name].pack()
 
-button = customtkinter.CTkButton(master=frame, text="Login", command=login)
-button.pack(pady=12, padx=10)
 
-checkbox = customtkinter.CTkCheckBox(master=frame, text="Remember me")
-checkbox.pack(pady=12, padx=10)
+def add_buttons_to_screen2(category):
+    # Clear existing buttons on screen2
+    for widget in screens["screen2"].winfo_children():
+        widget.destroy()
+
+    # Add three buttons to screen2 based on the selected category
+    buttons_for_category = ["Great Britain", "The Netherlands", "the United States of America"]
+    for button_text in buttons_for_category:
+        button = ctk.CTkButton(master=screens["screen2"], text=button_text, command=lambda
+        button_text=button_text: save_info_and_switch_screen("screen1", button_text))
+        button.pack(pady=12, padx=10)
+
+
+# Create the main application window
+root = ctk.CTk()
+root.geometry("800x600")
+
+# Create screens as frames
+screens = {}
+screens["screen1"] = ctk.CTkFrame(master=root)
+screens["screen2"] = ctk.CTkFrame(master=root)
+
+# Dictionary to store information for each category
+saved_info = {}
+
+# Create buttons for 7 categories
+categories = ["Business", "Entertainment", "General", "Health", "Science", "Sport", "Technology"]
+for category in categories:
+    button = ctk.CTkButton(master=root, text=category,
+                           command=lambda category=category: save_info_and_switch_screen("screen2", category))
+    button.pack(pady=12, padx=10)
+
+# Initially show the first screen
+show_screen("screen1")
+
 
 root.mainloop()
-#debug
+
+print(saved_info)
+print(saved_info["1"])
