@@ -20,7 +20,7 @@ def get_articles_by_category(category, country, number_of_pages):
 
 def _get_articles(params):
     response = requests.get(URL, params=params)
-    print(response)
+    # print(response)
     articles = response.json().get('articles', [])
 
     results = []
@@ -28,7 +28,7 @@ def _get_articles(params):
     for article in articles:
         results.append({'title': article['title'], 'url': article['url']})
 
-    articles_to_print = min(len(results), 5)
+    articles_to_print = min(len(results), 15)
 
     for i in range(articles_to_print):
         print(results[i]['title'])
@@ -97,7 +97,7 @@ def main():
     country = menu_country()
     number_of_pages = menu_pages()
     print(get_articles_by_category(category, country, number_of_pages))
-
+    input('Press ENTER to exit')
 
 if __name__ == '__main__':
     main()
