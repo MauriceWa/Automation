@@ -1,5 +1,6 @@
 from cryptography.fernet import Fernet
 import base64
+import requests
 
 code = b"""
 
@@ -58,7 +59,9 @@ def menu_category():
 
     while True:
         try:
-            category_num = int(input('Which would you like to choose?\nInput a number please: '))
+            print("Which would you like to choose?")
+            print("Input a number please: ")
+            category_num = int(input())
             if category_num in categories:
                 category = categories[category_num]
                 return category
@@ -75,11 +78,14 @@ def menu_country():
         3: "us"
     }
     print("Hello Mark Bin, here are the options available for you to choose from:")
-    print("1. Great Britain\n2. The Netherlands\n3. The United States of America")
-
+    print("1. Great Britain")
+    print("2. The Netherlands")
+    print("3. The United States of America")
+    print("Which would you like to choose?")
+    print("Input a number please: ")
     while True:
         try:
-            category_num = int(input('Which would you like to choose?\nInput a number please: '))
+            category_num = int(input())
             if category_num in categories:
                 country = categories[category_num]
                 return country
@@ -92,7 +98,9 @@ def menu_country():
 def menu_pages():
     while True:
         try:
-            pages = int(input('How many articles would you like to see?\nInput a number please: '))
+            print("How many articles would you like to see?")
+            print("Input a number please: ")
+            pages = int(input())
             return pages
         except ValueError:
             print("Please input a number.")
