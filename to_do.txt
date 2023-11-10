@@ -1,0 +1,4 @@
+Inno setup for installer
+customtkinter for UI version
+fix file structure
+fix bug in news_automated.py
