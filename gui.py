@@ -20,7 +20,7 @@ def add_buttons_to_screen2():
     country_options = ["Great Britain", "The Netherlands", "the United States of America"]
     for button_text in country_options:
         button = ctk.CTkButton(master=screens["screen2"], text=button_text, command=lambda
-            button_text=button_text: save_info_and_switch_screen("screen2", button_text))
+        button_text=button_text: save_info_and_switch_screen("screen2", button_text))
         button.pack(pady=12, padx=10)
 
 
@@ -42,11 +42,7 @@ for category in category_options:
     button.pack(pady=12, padx=10)
 
 
-
-
-
 show_screen("screen1")
-
 
 
 def use_selected_options():
